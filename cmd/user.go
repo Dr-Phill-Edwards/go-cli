@@ -12,6 +12,8 @@ var userCmd = &cobra.Command{
 	Long:  "Get authenticated user information from Github",
 	Run: func(cmd *cobra.Command, args []string) {
 		user := GetUser()
+		fmt.Print(user["login"])
+		fmt.Print(": ")
 		fmt.Println(user["name"])
 	},
 }

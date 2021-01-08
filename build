@@ -1,0 +1,15 @@
+#! /bin/bash
+
+targets=(darwin:amd64 linux:amd64 windows:amd64)
+
+for target in ${targets[@]}
+do
+   goos=${target%:*}
+   goarch=${target#*:}
+   binary=gocli-$goos-$goarch
+   if [[ $goos == windows ]]
+   then
+      binary=$binary.exe
+   fi
+   GOOS=$goos GOARCH=$goarch go build -o $binary
+done
